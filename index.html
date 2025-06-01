@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todochan</title>
     <link rel="icon" href="images/logo.png" />
+    <link rel="manifest" href="manifest.json" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,5 +55,15 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch((error) =>
+            console.error("Service Worker registration failed:", error)
+          );
+      }
+    </script>
   </body>
 </html>
