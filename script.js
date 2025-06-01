@@ -4,7 +4,7 @@ const todos = document.getElementById('todolist');
 
 let tasks = [];
 
-// Task element
+//──────────────── Task Element Creation
 function createTaskElement(task) {
   const container = document.createElement('div');
   container.className =
@@ -23,6 +23,7 @@ function createTaskElement(task) {
     } transition">${task.text}</span>
   `;
 
+  //──────────────── Toggle Done State
   left.addEventListener('click', () => {
     task.done = !task.done;
     saveTasks();
@@ -33,6 +34,8 @@ function createTaskElement(task) {
   del.innerHTML =
     '<i class="fa-solid fa-trash text-gray-400 hover:text-red-500 transition"></i>';
   del.className = 'ml-4';
+
+  //──────────────── Delete Task
   del.addEventListener('click', () => {
     tasks = tasks.filter(t => t !== task);
     saveTasks();
@@ -44,6 +47,7 @@ function createTaskElement(task) {
   return container;
 }
 
+//──────────────── Render All Tasks
 function renderTasks() {
   todos.innerHTML = '';
   tasks.forEach(task => {
@@ -51,10 +55,12 @@ function renderTasks() {
   });
 }
 
+//──────────────── Save Tasks to Local Storage
 function saveTasks() {
   localStorage.setItem('myTasks', JSON.stringify(tasks));
 }
 
+//──────────────── Add Button Click Event
 add.addEventListener('click', () => {
   const text = input.value.trim();
   if (text !== '') {
@@ -65,6 +71,7 @@ add.addEventListener('click', () => {
   }
 });
 
+//──────────────── Load Tasks on Page Load
 window.addEventListener('DOMContentLoaded', () => {
   const stored = localStorage.getItem('myTasks');
   if (stored) {
